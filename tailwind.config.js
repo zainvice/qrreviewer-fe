@@ -23,26 +23,18 @@ export const theme = {
       'xsm':'400',
     },
     backgroundColor: {
-      'pink': '#ED003B',
-      'blue':'#6366F1',
-      'red': '#D70004',
-      'green': '#00D752',
+      
     },
     textColor: {
       'custom': '#21D0B2',
-      'pink': '#ED003B',
-      'blue':'#6366F1',
-      'red': '#D70004',
-      'green': '#00D752',
+      
     },
     borderColor: {
       'custom': '#21D0B2',
-      'pink': '#ED003B',
-      'blue':'#6366F1'
+     
     },
     outlineColor: {
-      'pink': '#ED003B',
-      'blue':'#6366F1'
+     
     },
     perspective: {
       '500': '500px',
