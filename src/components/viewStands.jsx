@@ -80,7 +80,7 @@ const ViewAllStands = () => {
           <table className="w-full border-collapse border border-gray-200">
             <thead>
               <tr className="bg-gray-100">
-                <th className="border border-gray-300 px-4 py-2">Stand ID</th>
+                <th className="border border-gray-300 px-4 py-2">ID</th>
                 <th className="border border-gray-300 px-4 py-2">Signup Link</th>
                 <th className="border border-gray-300 px-4 py-2">QR Code</th>
                 <th className="border border-gray-300 px-4 py-2">NFC URL</th>
@@ -89,7 +89,7 @@ const ViewAllStands = () => {
             <tbody>
               {stands.map((stand, index) => (
                 <tr key={stand.standId} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-2">{getReadableStandId(index)}</td>
+                  <td className="border border-gray-300 px-4 py-2">{index+1}</td>
                   <td className="border border-gray-300 px-4 py-2">{stand.signupLink || "N/A"}</td>
                   <td className="border border-gray-300 px-4 py-2">{stand.qrCode ? (
                     <img src={`data:image/png;base64,${stand.qrCode}`} alt="QR Code" className="w-16 h-16 mx-auto" />

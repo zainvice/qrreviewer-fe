@@ -29,7 +29,9 @@ const SignUp = () => {
         if(!response.googleReviewLink){
           setLoading(false);
         }
-        window.location.href = response.googleReviewLink;
+        if(response.googleReviewLink){
+          window.location.href = response.googleReviewLink;
+        }
       } catch (error) {
         console.error("ERROR: ", error);
         setLoading(false);

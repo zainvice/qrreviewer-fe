@@ -6,7 +6,7 @@ import { linkBusinessToStand } from "../api/standCalls";
 import { getStandDetails } from "../api/standCalls";
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState("Manage Businesses");
+  const [activeTab, setActiveTab] = useState("Manage Business");
   const [userData, setUserData] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -95,21 +95,21 @@ const Dashboard = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "Manage Businesses":
+      case "Manage Business":
         return (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">Manage Businesses</h2>
+          <div className="flex flex-col flex-grow">
+            <h2 className="text-xl font-semibold mb-4">Manage Business</h2>
             <p className="mb-4">{stand?.linkedBusiness? 'Business Linked' : 'Search and link your business here.'}</p>
             {stand?.linkedBusiness ? (
                <div
                   key={stand?.linkedBusiness}
-                  className="p-4 flex justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
+                  className="p-4 flex flex-col lg:flex-row justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
                 >
-                <div className="flex flex-col w-1/4"> 
+                <div className="flex flex-col lg:w-1/2"> 
                     <strong className="my-auto">{stand?.linkedBusiness.name}</strong>
                     <p className="my-auto text-sm text-gray-600">{stand?.linkedBusiness.address}</p>
                 </div>
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-2 mt-4 lg:mt-0">
                     <a
                       href={`${stand?.linkedBusiness.googleReviewLink}`}
                       target="_blank"
@@ -117,7 +117,7 @@ const Dashboard = () => {
                       className="my-auto flex space-x-2 bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg"
                     >
                       <img src="/google-map-icon.png" alt="maps-icon" className="h-6"/>
-                      <span>View on Maps</span>
+                      <span className="hidden lg:block">View on Maps</span>
                     </a>
                     <button className="my-auto bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg" disabled>Linked</button>
                   </div>
@@ -151,7 +151,7 @@ const Dashboard = () => {
                     {searchResults.map((result, index) => (
                       <li
                         key={index}
-                        className="p-4 flex justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
+                        className="p-4 flex flex-col lg:flex-row justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
                       >
                       <div className="flex flex-col w-1/4"> 
                           <strong className="my-auto">{result.name}</strong>
@@ -188,19 +188,19 @@ const Dashboard = () => {
         );
       case "Reset Stand":
         return (
-          <div>
+          <div className="flex flex-col flex-grow">
             <h2 className="text-xl font-semibold mb-4">Reset Stand</h2>
             <p className="mb-4">Reset your stand and relink to a new business.</p>
             {stand?.linkedBusiness && (
                <div
                   key={stand?.linkedBusiness}
-                  className="p-4 flex justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
+                  className="p-4 flex flex-col lg:flex-row justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
                 >
-                <div className="flex flex-col w-1/4"> 
+                <div className="flex flex-col lg:w-1/2"> 
                     <strong className="my-auto">{stand?.linkedBusiness.name}</strong>
                     <p className="my-auto text-sm text-gray-600">{stand?.linkedBusiness.address}</p>
                 </div>
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-2 mt-4 lg:mt-0">
                     <a
                       href={`${stand?.linkedBusiness.googleReviewLink}`}
                       target="_blank"
@@ -208,7 +208,7 @@ const Dashboard = () => {
                       className="my-auto flex space-x-2 bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg"
                     >
                       <img src="/google-map-icon.png" alt="maps-icon" className="h-6"/>
-                      <span>View on Maps</span>
+                      <span className="lg:block hidden">View on Maps</span>
                     </a>
                     <button className="my-auto bg-red-600 text-white duration-300 hover:bg-red-700 p-2 px-3 rounded-lg" >Unlink</button>
                   </div>
@@ -222,9 +222,9 @@ const Dashboard = () => {
         );
       case "Analytics":
         return (
-          <div>
+          <div className="flex flex-col flex-grow">
             <h2 className="text-xl font-semibold mb-4">Analytics</h2>
-            <p>View QR/NFC usage statistics and performance data.</p>
+            <p>View QR/NFC usage statistics and performance data of your stand.</p>
             <div>
             <table className="w-full border-collapse border border-gray-200 my-4">
               <thead>
@@ -263,7 +263,7 @@ const Dashboard = () => {
   };
 
   const menuItems = [
-    { name: "Manage Businesses", icon: "business" },
+    { name: "Manage Business", icon: "business" },
     { name: "Reset Stand", icon: "restart_alt" },
     { name: "Analytics", icon: "bar_chart" },
   ];
@@ -274,7 +274,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="h-screen overflow-y-auto bg-gray-50">
+    <div className="min-h-screen flex flex-col overflow-y-auto bg-gray-50">
       <header className="bg-white shadow-md text-white py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
@@ -283,13 +283,13 @@ const Dashboard = () => {
           </div>
           <button
              onClick={handleLogout}
-            className="py-2 px-4 bg-red-500 rounded-lg duration-300 hover:bg-red-600 flex items-center"
+            className="py-2 px-4 bg-white shadow-sm text-black hover:text-white border rounded-lg duration-300 hover:bg-red-600 flex items-center"
           >
-            <span className="material-symbols-outlined mr-2">logout</span> Logout
+            <span className="material-symbols-outlined m-auto lg:mr-2">logout</span> <span className="hidden lg:block">Logout</span>
           </button>
         </div>
       </header>
-      <main className="container mx-auto px-4 py-6">
+      <main className="container flex flex-col flex-grow mx-auto px-4 py-6">
         <h1 className="mb-2">Welcome, <span className="font-bold">{userData?.name}</span></h1>
         <div className="flex space-x-4 mb-6">
           {menuItems.map((item) => (
@@ -303,11 +303,11 @@ const Dashboard = () => {
               } duration-300 hover:bg-gray-800 duration-300 hover:text-white`}
             >
               <span className="material-symbols-outlined">{item.icon}</span>
-              <span>{item.name}</span>
+              <span className="hidden lg:block">{item.name}</span>
             </button>
           ))}
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">{renderContent()}</div>
+        <div className="bg-white p-6 rounded-lg shadow-md flex flex-grow">{renderContent()}</div>
       </main>
     </div>
   );

@@ -39,10 +39,10 @@ const AdminDashboard = () => {
         </div>
         <button
           onClick={handleLogout}
-          className="flex items-center space-x-2 text-red-600 px-4 py-2 bg-gray-100 rounded hover:bg-gray-200 transition"
+          className="py-2 px-4 bg-white shadow-sm text-black hover:text-white border rounded-lg duration-300 hover:bg-red-600 flex items-center"
         >
           <span className="material-symbols-outlined">logout</span>
-          <span>Logout</span>
+          <span className="lg:block hidden">Logout</span>
         </button>
       </header>
 
