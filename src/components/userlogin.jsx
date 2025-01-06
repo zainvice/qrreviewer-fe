@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/userCalls";
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
+  const navigate = useNavigate()
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
