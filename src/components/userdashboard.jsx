@@ -155,11 +155,11 @@ const Dashboard = () => {
                         key={index}
                         className="p-4 flex flex-col lg:flex-row justify-between bg-gray-100 rounded-lg shadow duration-300 hover:bg-gray-200 cursor-pointer"
                       >
-                      <div className="flex flex-col w-1/4"> 
+                      <div className="flex flex-col lg:w-1/2"> 
                           <strong className="my-auto">{result.name}</strong>
                           <p className="my-auto text-sm text-gray-600">{result.formatted_address}</p>
                       </div>
-                        <div className="flex space-x-2">
+                        <div className="flex space-x-2 mt-4 lg:mt-0">
                           <a
                             href={`https://www.google.com/maps/place/?q=place_id:${result.place_id}`}
                             target="_blank"
@@ -167,7 +167,7 @@ const Dashboard = () => {
                             className="my-auto flex space-x-2 bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg"
                           >
                             <img src="/google-map-icon.png" alt="maps-icon" className="h-6"/>
-                            <span>View on Maps</span>
+                            <span className="hidden lg:block">View on Maps</span>
                           </a>
                           <button className="my-auto bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg" onClick={(e)=> handleLink(result)}>{linkLoader? 'Linking...': 'Link to Stand'}</button>
                         </div>

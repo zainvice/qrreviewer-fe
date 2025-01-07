@@ -92,7 +92,7 @@ const ViewAllStands = () => {
                   <td className="border border-gray-300 px-4 py-2">{index+1}</td>
                   <td className="border border-gray-300 px-4 py-2">{stand.signupLink || "N/A"}</td>
                   <td className="border border-gray-300 px-4 py-2">{stand.qrCode ? (
-                    <img src={`data:image/png;base64,${stand.qrCode}`} alt="QR Code" className="w-16 h-16 mx-auto" />
+                    <img src={`data:image/png;base64,${stand.qrCode}`} alt="QR Code" className="w-24 h-16 mx-auto" />
                   ) : (
                     "N/A"
                   )}</td>
