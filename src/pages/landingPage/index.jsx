@@ -7,7 +7,7 @@ const LandingPage = () => {
       {/* Header */}
       <header className="bg-white shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center p-6">
-          <div className="text-2xl font-bold text-gray-800"> <img src="/logo-z.png" alt="Logo" className="h-8" /></div>
+          <div className="text-2xl font-bold text-gray-800"> <img src="/logo-z.png" alt="Logo" className="h-8 hidden lg:block" /><img src="/favicon.png" alt="Logo" className="h-6" /></div>
           <div className="space-x-6">
             <Link to="/login" className="text-gray-600 hover:text-gray-800">
               Login
