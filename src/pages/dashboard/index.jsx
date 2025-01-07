@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState(null);
+  const [activeTab, setActiveTab] = useState("Manage Business");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { path } = useParams();
 
@@ -55,7 +56,7 @@ const AdminDashboard = () => {
           }`}
         >
           <button
-            className="absolute -top-2 right-8 flex items-center justify-center py-4 hover:bg-gray-200 transition"
+            className="absolute -top-2 right-6 flex items-center justify-center p-2 hover:bg-gray-200 transition"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
             <span className="material-symbols-outlined">
@@ -64,22 +65,25 @@ const AdminDashboard = () => {
           </button>
           <nav className="flex flex-col space-y-4 px-4 mt-10">
             <button
-              onClick={() => handleNavigation("/admin/dashboard/generate-qrcodes")}
-              className="flex items-center space-x-4 py-2 px-2 rounded hover:bg-gray-100 transition"
+              onClick={() => {handleNavigation("/admin/dashboard/generate-qrcodes"); setActiveTab('Generate Stands')}}
+              className={`flex items-center space-x-4 py-2 px-2 rounded transition duration-300 ${activeTab==='Generate Stands' ? 'bg-black text-white hover:bg-gray-800': 'bg-white text-black hover:bg-gray-100'} `}
+              
             >
               <span className="material-symbols-outlined">qr_code</span>
               {isSidebarOpen && <span>Generate Stands</span>}
             </button>
             <button
-              onClick={() => handleNavigation("/admin/dashboard/view-stands")}
-              className="flex items-center space-x-4 py-2 px-2 rounded hover:bg-gray-100 transition"
+              onClick={() => {handleNavigation("/admin/dashboard/view-stands"); setActiveTab('View All Stands')}}
+              className={`flex items-center space-x-4 py-2 px-2 rounded transition duration-300 ${activeTab==='View All Stands' ? 'bg-black text-white hover:bg-gray-800': 'bg-white text-black hover:bg-gray-100'} `}
+              
             >
               <span className="material-symbols-outlined">lightning_stand</span>
               {isSidebarOpen && <span>View All Stands</span>}
             </button>
             <button
-              onClick={() => handleNavigation("/admin/dashboard/view-reports")}
-              className="flex items-center space-x-4 py-2 px-2 rounded hover:bg-gray-100 transition"
+              onClick={() => {handleNavigation("/admin/dashboard/view-reports"); setActiveTab('View Reports')}}
+              className={`flex items-center space-x-4 py-2 px-2 rounded transition duration-300 ${activeTab==='View Reports' ? 'bg-black text-white hover:bg-gray-800': 'bg-white text-black hover:bg-gray-100'} `}
+              
             >
               <span className="material-symbols-outlined">bar_chart</span>
               {isSidebarOpen && <span>View Reports</span>}
