@@ -10,6 +10,16 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decoded = jwtDecode(token);
+      window.location.href = `/${decoded.role}/dashboard`;
+    }
+
+  }, []);
+
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
