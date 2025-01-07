@@ -184,7 +184,7 @@ const Dashboard = () => {
             )}
             <div className="mt-4 flex items-center justify-center">
               <span className="text-sm text-gray-600">Powered by</span>
-              <img src="/google_logo.png" alt="Google" className="ml-2 h-4" />
+              <img src="/favicon.png" alt="Zepto" className="ml-2 h-4" />
             </div>
           </div>
         );
@@ -218,7 +218,7 @@ const Dashboard = () => {
             )}
             <div className="mt-4 flex items-center justify-center">
               <span className="text-sm text-gray-600">Powered by</span>
-              <img src="/favicon.png" alt="Google" className="ml-2 h-4" />
+              <img src="/favicon.png" alt="Zepto" className="ml-2 h-4" />
             </div>
           </div>
         );
@@ -255,7 +255,7 @@ const Dashboard = () => {
             </div>
             <div className="mt-4 flex items-center justify-center">
               <span className="text-sm text-gray-600">Powered by</span>
-              <img src="/favicon.png" alt="Google" className="ml-2 h-4" />
+              <img src="/favicon.png" alt="Zepto" className="ml-2 h-4" />
             </div>
           </div>
         );
