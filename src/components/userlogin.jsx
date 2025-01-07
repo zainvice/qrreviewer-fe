@@ -24,12 +24,11 @@ const Login = () => {
         
       localStorage.setItem("token", token)
     
-      //setError(response.message || "Login Done!");
-      window.location.href = "/user/dashboard";
+      window.location.href = `/${user.role}/dashboard`;
       
     } catch (error) {
       console.error("Error during login:", error);
-      setError("Incorrect email or password!");
+      setError(error.message);
     } finally {
       setLoading(false);
     }

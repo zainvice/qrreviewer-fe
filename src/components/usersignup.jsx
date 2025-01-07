@@ -65,7 +65,7 @@ const SignUp = () => {
         setError(response.message || "Something went wrong!");
       } */
     } catch (err) {
-      setError(err.response?.data?.message || "Server error. Try again later.");
+      setError(err?.message || "Server error. Try again later.");
     } finally {
       setRegisterLoading(false); // End register loading
     }

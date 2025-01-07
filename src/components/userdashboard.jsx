@@ -3,7 +3,7 @@ import axiosInstance from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import { linkBusinessToStand } from "../api/standCalls";
-import { getStandDetails } from "../api/standCalls";
+import { getStandDetails, resetStand } from "../api/standCalls";
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Manage Business");
@@ -61,8 +61,11 @@ const Dashboard = () => {
     }
    
   }, [userData]);
+  const [linkLoader, setLinkLoader] = useState(false)
+  const [UnlinkLoader, setUnlinkLoader] = useState(false)
   const handleLink = async(placeData) => {
     try {
+      setLinkLoader(true)
       const standId = userData?.stands[0]
       const businessData = {
         name: placeData.name, address: placeData.formatted_address, googlePlaceId: placeData.place_id, ownerId: userData.id, 
@@ -70,22 +73,21 @@ const Dashboard = () => {
       }
       const response = await linkBusinessToStand(standId, businessData)
       console.log(response)
-      
+      setLinkLoader(false)
+      window.location.reload()
     } catch (error) {
       console.error("ERROR", error)
     }
 
   }
-  const handleUnlink = async(placeData) => {
+  const handleUnlink = async() => {
     try {
+      setUnlinkLoader(true)
       const standId = userData?.stands[0]
-      const businessData = {
-        name: placeData.name, address: placeData.formatted_address, googlePlaceId: placeData.place_id, ownerId: userData.id, 
-        googleReviewLink: `https://www.google.com/maps/place/?q=place_id:${placeData.place_id}`
-      }
-      const response = await linkBusinessToStand(standId, businessData)
+      const response = await resetStand(standId)
       console.log(response)
-      
+      setUnlinkLoader(false)
+      window.location.reload()
     } catch (error) {
       console.error("ERROR", error)
     }
@@ -137,7 +139,7 @@ const Dashboard = () => {
                   className="mt-2 w-full bg-black text-white py-2 px-4 rounded-lg duration-300 hover:bg-gray-800 flex justify-center items-center"
                 >
                   {isLoading ? (
-                    <span className="loader"></span>
+                    "Searching..."
                   ) : (
                     "Search"
                   )}
@@ -167,7 +169,7 @@ const Dashboard = () => {
                             <img src="/google-map-icon.png" alt="maps-icon" className="h-6"/>
                             <span>View on Maps</span>
                           </a>
-                          <button className="my-auto bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg" onClick={(e)=> handleLink(result)}>Link to Stand</button>
+                          <button className="my-auto bg-black text-white duration-300 hover:bg-gray-800 p-2 px-3 rounded-lg" onClick={(e)=> handleLink(result)}>{linkLoader? 'Linking...': 'Link to Stand'}</button>
                         </div>
                       </li>
                     ))}
@@ -190,7 +192,7 @@ const Dashboard = () => {
         return (
           <div className="flex flex-col flex-grow">
             <h2 className="text-xl font-semibold mb-4">Reset Stand</h2>
-            <p className="mb-4">Reset your stand and relink to a new business.</p>
+            <p className="mb-4">{stand?.linkedBusiness ? 'Reset your stand and relink to a new business.' : 'Stand isnt linked to any business yet.'}</p>
             {stand?.linkedBusiness && (
                <div
                   key={stand?.linkedBusiness}
@@ -210,7 +212,7 @@ const Dashboard = () => {
                       <img src="/google-map-icon.png" alt="maps-icon" className="h-6"/>
                       <span className="lg:block hidden">View on Maps</span>
                     </a>
-                    <button className="my-auto bg-red-600 text-white duration-300 hover:bg-red-700 p-2 px-3 rounded-lg" >Unlink</button>
+                    <button className="my-auto bg-red-600 text-white duration-300 hover:bg-red-700 p-2 px-3 rounded-lg" onClick={handleUnlink}>{UnlinkLoader? 'Unlinking...': 'Unlink'}</button>
                   </div>
              </div>
             )}
